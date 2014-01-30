@@ -4,7 +4,6 @@ using NinjectWebApi.Filters;
 
 namespace NinjectWebApi.Controllers
 {
-	[InternalServerErrorFilter]
 	public class ErrorController : ApiController
 	{
 		public string Get()
