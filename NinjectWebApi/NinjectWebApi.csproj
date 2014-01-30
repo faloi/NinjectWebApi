@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\DI\NinjectHttpModules.cs" />
+    <Compile Include="App_Start\DI\Modules\MainModule.cs" />
     <Compile Include="App_Start\DI\NinjectWebApi.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
 using Ninject;
-using Ninject.Modules;
 
 //  A small Library to configure Ninject (A Dependency Injection Library) with a WebAPI Application. 
 //  To configure, take the following steps.
@@ -26,9 +26,10 @@ namespace NinjectWebApi.App_Start.DI
 	public class NinjectHttpResolver : IDependencyResolver
 	{
 		public IKernel Kernel { get; private set; }
-		public NinjectHttpResolver(params NinjectModule[] modules)
+		public NinjectHttpResolver()
 		{
-			Kernel = new StandardKernel(modules);
+			Kernel = new StandardKernel();
+			Kernel.Load(Assembly.GetExecutingAssembly());
 		}
 
 		public object GetService(Type serviceType)
@@ -65,9 +66,9 @@ namespace NinjectWebApi.App_Start.DI
 		private static NinjectHttpResolver _resolver;
 
 		//Register Ninject Modules
-		public static void RegisterModules(NinjectModule[] modules)
+		public static void RegisterModules()
 		{
-			_resolver = new NinjectHttpResolver(modules);
+			_resolver = new NinjectHttpResolver();
 			GlobalConfiguration.Configuration.DependencyResolver = _resolver;
 		}
 
